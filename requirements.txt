@@ -1,0 +1,10 @@
+# Backend (FastAPI + PydanticAI agent). Install from the project folder:
+#   pip install -r requirements.txt
+fastapi>=0.115
+uvicorn[standard]>=0.30
+# PydanticAI 2.x with the OpenAI extra (Responses API, used through Portkey)
+pydantic-ai-slim[openai]>=2.52,<3
+openai>=3.22
+python-dotenv>=1.0
+
+# Optional, only for tests/capture_app_check.py (screenshots): pip install playwright

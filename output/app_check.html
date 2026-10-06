@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs: Live App Check (HW 4, Problem 11)</title>
+<style>
+  :root { --blue: #00356b; --ink: #1b2230; --muted: #5a6172; --line: #ddd5c3; --paper: #fbf8f1; --ok: #1d6b39; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Arial, sans-serif; }
+  main { max-width: 1240px; margin: 0 auto; padding: 36px 24px 64px; }
+  header { border-bottom: 3px solid var(--blue); padding-bottom: 18px; margin-bottom: 8px; }
+  h1 { color: var(--blue); font-size: 2rem; margin: 0 0 6px; }
+  .meta { margin: 2px 0; color: var(--muted); }
+  .meta strong { color: var(--ink); }
+  .run { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin: 16px 0 0; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 0.92em; background: #eef1f6; padding: 1px 5px; border-radius: 4px; }
+  section { margin-top: 40px; }
+  h2 { color: var(--blue); font-size: 1.45rem; margin: 0 0 4px; }
+  .asked { margin: 0 0 12px; color: var(--muted); }
+  .asked q { color: var(--ink); font-weight: 600; }
+  figure { margin: 0; }
+  figure a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 2px 10px rgba(0, 35, 74, 0.08); }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { margin-top: 12px; font-size: 1.02rem; }
+  .pass { display: inline-block; font-size: 0.78rem; font-weight: 700; color: #fff; background: var(--ok); padding: 1px 9px; border-radius: 999px; margin-left: 8px; vertical-align: 3px; }
+  .hint { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Campus Customs: Live App Check</h1>
+    <p class="meta"><strong>Luke Nagli</strong> · MGT 409 AI Foundation for Managers · Homework 4, Problem 11 · October 6, 2026</p>
+    <p class="run">
+      <strong>How the site was run:</strong> the backend ran locally with <code>uvicorn main:app --reload --port 8000</code> (from <code>backend/</code>, PydanticAI agent on <code>gpt-5.6-luna</code> via Portkey). The front end ran with <code>npm run dev</code> (from <code>frontend/</code>, http://localhost:5173). The screenshots are real captures of that running app. Each was taken in a fresh guest session, in Google Chrome driven by <code>tests/capture_app_check.py</code> (Playwright) at 1366×900, typing each question into the chat widget and waiting for the bot's live reply.
+    </p>
+  </header>
+
+  <section id="inventory">
+    <h2>1. Inventory check <span class="pass">PASS</span></h2>
+    <p class="asked">Asked on the Ice Hockey Left Chest Hoodie page: <q>How much is the Ice Hockey Left Chest Hoodie, and how many do you have in XS and in large?</q></p>
+    <figure>
+      <a href="app_check_images/inventory.png" target="_blank"><img src="app_check_images/inventory.png" alt="Chat answering price and stock for the Ice Hockey Left Chest Hoodie in XS and large, with large sold out"></a>
+      <figcaption>The bot answers "$68.00. We have 20 in XS, but large is out of stock (0)". The database matches: <code>ice-hockey-left-chest-hoodie</code> is <strong>$68.00</strong>, with <strong>XS = 20</strong> and <strong>L = 0</strong> (S = 8, XXL = 25, M and XL = 0), as the page's own size chips also show. The green "Checked against store data · $68.00 · 20 in XS" badge confirms the reply passed the fact check against the tool results.</figcaption>
+    </figure>
+  </section>
+
+  <section id="search-results">
+    <h2>2. Dynamic search results <span class="pass">PASS</span></h2>
+    <p class="asked">Asked on the Home page: <q>What hoodies do you have?</q></p>
+    <figure>
+      <a href="app_check_images/search_results.png" target="_blank"><img src="app_check_images/search_results.png" alt="Products page showing Results for hoodies with product cards, next to the chat reply"></a>
+      <figcaption>The question took the shopper from Home to the Products page, which now shows "Results for hoodies" with <strong>27 product cards</strong>, while the chat stays open beside them with a short summary. The 27 cards are every hoodie-type product in the database: 27 rows whose garment type contains "hood", priced at $45 (2), $68 (23) and $88 (2). The names, prices and images on the cards are built from the database on the backend.</figcaption>
+    </figure>
+  </section>
+
+  <section id="usability">
+    <h2>3. Usability feature: in-stock alternatives <span class="pass">PASS</span></h2>
+    <p class="asked">Asked on the Champion Reverse Weave Hoodie 1 page: <q>Do you have this in XS?</q></p>
+    <figure>
+      <a href="app_check_images/usability.png" target="_blank"><img src="app_check_images/usability.png" alt="Chat saying XS is sold out and showing in-stock alternative hoodies as cards"></a>
+      <figcaption>XS is sold out for this hoodie (database: <strong>XS = 0</strong>, matching the crossed-out chip on the page). Instead of stopping there, the bot called the Problem 9 <code>find_alternatives</code> tool and showed same-category, same-price ($68.00) hoodies that have XS in stock, as clickable cards. For example, Yale Mom Hoodie (XS = 25), Yale Uncle Hoodie (XS = 25) and Crew Left Chest Hoodie (XS = 20).</figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    Screenshots: <code>app_check_images/inventory.png</code>, <code>app_check_images/search_results.png</code>, <code>app_check_images/usability.png</code> (click any image to open it full size). The full bot replies for all three are saved in <code>app_check_images/transcript.json</code>. This page uses no outside files or fonts and works offline.
+  </footer>
+</main>
+</body>
+</html>

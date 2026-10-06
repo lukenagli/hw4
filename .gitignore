@@ -1,0 +1,41 @@
+# ---- Data pack: local only, never committed --------------------------------
+# data/campus_customs.db and data/products/*.jpg are supplied separately.
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ---- Secrets ------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+backend/.session_secret
+
+# ---- Dependencies -------------------------------------------------------------
+node_modules/
+.venv/
+venv/
+env/
+
+# ---- Build output and caches --------------------------------------------------
+frontend/dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vite/
+*.log
+
+# ---- Audit trail scratch files (output/audit_trail.json itself IS committed) ----
+output/audit_trail.json.lock
+output/.audit_trail.*.tmp
+output/audit_trail.unreadable-*.json
+
+# ---- Editor / OS ----------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Note: output/app_check_images/ is deliberately NOT ignored (graded screenshots).

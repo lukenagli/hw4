@@ -1,0 +1,48 @@
+{
+  "inventory": {
+    "question": "How much is the Ice Hockey Left Chest Hoodie, and how many do you have in XS and in large?",
+    "reply": "The Ice Hockey Left Chest Hoodie is $68.00. We have 20 in XS, but large is out of stock (0); available sizes are XS, S, and XXL. I found several $68.00 hoodies with large in stock below.",
+    "chat_cards": [
+      "Squash Left Chest Hoodie",
+      "Yale Mom Hoodie",
+      "Champion Reverse Weave Hoodie 1"
+    ],
+    "fact_check": [
+      "✓\nChecked against store data\n$68.00 · $68.00 · 20 in XS"
+    ],
+    "page_url": "http://localhost:5173/products/ice-hockey-left-chest-hoodie",
+    "page_heading": "Ice Hockey Left Chest Hoodie",
+    "page_cards": 0,
+    "file": "inventory.png"
+  },
+  "search_results": {
+    "question": "What hoodies do you have?",
+    "reply": "I found 27 hoodies, including Yale family designs, Bulldog styles, sports hoodies, and full-zip options. Most are $68.00, with options at $45.00 and $88.00 too—they’re on the page now. Want to narrow them by color, size, or design?",
+    "chat_cards": [
+      "Basic Hoodie Big Yale",
+      "Brooks Brothers Double Knit Full Zip Hoodie Yale",
+      "Champion Reverse Weave Hoodie 1"
+    ],
+    "fact_check": [
+      "✓\nChecked against store data\n$68.00 · $45.00 · $88.00"
+    ],
+    "page_url": "http://localhost:5173/products",
+    "page_heading": "Results for hoodies",
+    "page_cards": 27,
+    "file": "search_results.png"
+  },
+  "usability": {
+    "question": "Do you have this in XS?",
+    "reply": "Sorry, XS is sold out in this hoodie. It’s available in S, M, L, and XXL; I found six same-price hoodies with XS in stock and put them below.",
+    "chat_cards": [
+      "Yale Mom Hoodie",
+      "Yale Uncle Hoodie",
+      "Crew Left Chest Hoodie"
+    ],
+    "fact_check": [],
+    "page_url": "http://localhost:5173/products/champion-reverse-weave-hoodie-1",
+    "page_heading": "Champion Reverse Weave Hoodie 1",
+    "page_cards": 0,
+    "file": "usability.png"
+  }
+}
