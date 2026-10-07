@@ -408,4 +408,10 @@ Make sure AI_prompts.md has a section for all 13 problems, including this one. T
 
 ### Follow-up prompts
 
-_None yet._
+#### Follow-up 1
+
+```text
+Go ahead
+```
+
+**What was missing or wrong:** _(waiting for the user's one-sentence reason)_
